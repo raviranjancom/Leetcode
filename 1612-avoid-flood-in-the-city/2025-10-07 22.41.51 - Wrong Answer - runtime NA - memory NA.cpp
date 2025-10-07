@@ -1,0 +1,41 @@
+class Solution {
+public:
+    vector<int> avoidFlood(vector<int>& rains) {
+        vector<int> ans;
+        queue<int> q;
+        unordered_set<int> st;
+        int points=0,n=rains.size();
+        for(int i=0;i<n;i++){
+            if(rains[i]!=0){
+                if(st.find(rains[i])!=st.end()){
+                    if(points>0){
+                        q.push(rains[i]);
+                        points--;
+                    }
+                    else{
+                        return {};
+                    }
+                }
+                else{
+                    st.insert(rains[i]);
+                }
+            }
+            else{
+                if(st.size()>0) points++;
+            }
+        }
+        for(int i=0;i<n;i++){
+            if(rains[i]==0){
+                int x=1;
+                if(!q.empty()){
+                    x=q.front(); q.pop();
+                }
+                ans.push_back(x);
+            }
+            else{
+                ans.push_back(-1);
+            }
+        }
+        return ans;
+    }
+};
