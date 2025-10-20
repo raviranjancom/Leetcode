@@ -1,0 +1,11 @@
+class Solution {
+public:
+    int finalValueAfterOperations(vector<string>& operations) {
+        int ans=0;
+        int n=operations.size();
+        for(int i=0;i<n;i++){
+            ans+=(operations[i][1]=='+')?1:-1;
+        }
+        return ans;
+    }
+};
